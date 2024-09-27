@@ -1,0 +1,172 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    font-family: "Roboto", sans-serif;
+}
+
+.card {
+    background-color: white;
+    width: 300px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.date {
+    text-align: right;
+    color: #4a7c59;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 300px; 
+    overflow: hidden; 
+}
+
+.slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.subtitle {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px;
+    font-size: 1rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1; 
+    text-shadow: 2px 2px 8px #0d0d0d91;
+}
+
+.birthday-text {
+    color: #4a7c59;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.left-text {
+    line-height: 0.2;
+}
+
+.left-text p {
+    font-family: "Mclaren", sans-serif;
+}
+
+.left-text p span {
+    font-family: "Satisfy", cursive;
+}
+
+.right-text {
+    font-size: 0.5rem;
+    width: 50%;
+    font-weight: bold;
+    text-align: center;
+}
+
+.footer {
+    border-top: 1px solid #4a7c59;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    color: #4a7c59;
+    font-size: 0.8em;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4a7c59;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.cake-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+@keyframes waveEffect {
+    0% {
+        transform: scale(1) translate(0, 0) skewX(0deg);
+    }
+    25% {
+        transform: scale(1.01) translate(-1px, 1px) skewX(1deg);
+    }
+    50% {
+        transform: scale(1.01) translate(1px, -1px) skewX(-1deg);
+    }
+    75% {
+        transform: scale(1.01) translate(-1px, 1px) skewX(1deg);
+    }
+    100% {
+        transform: scale(1) translate(0, 0) skewX(0deg);
+    }
+}
+
+@keyframes waveCakeEffect {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01) rotate(0.1deg);
+    }
+}
+
+.slider-image {
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
+}
+
+.slider-image:not(#cakeImage) {
+    animation: waveEffect 5s ease-in-out infinite; 
+}
+
+@keyframes filmLeakEffect {
+    0% {
+        opacity: 0.3;
+        transform: translateX(-50%) translateY(50%);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateX(30%) translateY(-30%);
+    }
+    100% {
+        opacity: 0.3;
+        transform: translateX(-50%) translateY(50%);
+    }
+}
+
