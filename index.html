@@ -1,183 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Photo Slideshow with Music</title>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      text-align: center;
-    }
-
-    .slideshow-container {
-      /* display: none; */
-      position: relative;
-    }
-
-    .fade {
-      -webkit-animation-name: fade;
-      -webkit-animation-duration: 1.5s;
-      animation-name: fade;
-      animation-duration: 1.5s;
-    }
-
-    @keyframes fade {
-      from {opacity: .4}
-      to {opacity: 1}
-    }
-
-    .text {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: white;
-      font-size: 20px;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 10px;
-    }
-
-    .popup {
-      display: none; /* Hidden initially */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      font-size: 50px;
-      font-weight: bold;
-      color: #FF6347;
-      opacity: 0; /* Start hidden */
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .popup.show {
-      display: block;
-      opacity: 1;
-    }
-
-    .hidden {
-      opacity: 0;
-      transition: opacity 2s ease-out;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Card</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=McLaren&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&family=Satisfy&display=swap" rel="stylesheet">
 </head>
 <body>
-<!-- 
-  <div id="music-section">
-    <button onclick="startSlideshow()">Play Music</button>
-  </div> -->
-
-  <!-- Slideshow Container -->
-  <div class="slideshow-container" id="slideshow">
-    <div class="mySlides fade">
-      <img src="1.jpg" alt="Photo 1" style="width:100%">
+    <div class="card" id="slider-container" style="display: none;">
+        <div class="date">April 2024</div>
+        <div class="image-container">
+          <img src="1.jpg" alt="Slide 1" class="slider-image">
+          <img src="2.jpg" alt="Slide 2" class="slider-image">
+          <img src="3.jpg" alt="Slide 3" class="slider-image">
+          <img src="4.jpg" alt="Slide 4" class="slider-image">
+          <img src="cake.jpg" alt="Cake Image" class="cake-image" id="cakeImage">
+          <div class="subtitle" id="subtitle"></div>
+      </div>      
+        <div class="birthday-text">
+          <div class="left-text">
+            <p><span>Happy</span></p>
+            <p>Birthday</p>
+          </div>
+          <div class="right-text">
+            <p>cheers to another trip around the sun! keep shining ☀️</p>
+          </div>
+        </div>
+        <div class="footer">
+            <span>created</span>
+            <span>2024</span>
+        </div>
     </div>
+    <button id="playButton">HAPPY BIRTHDAY !!!🎂</button>
 
-    <div class="mySlides fade">
-      <img src="2.jpg" alt="Photo 2" style="width:100%">
-      <div class="text">it's something like a day dream</div>
-    </div>
-
-    <div class="mySlides fade">
-      <img src="3.jpg" alt="Photo 3" style="width:100%">
-      <div class="text">but i feel so seen in the night</div>
-    </div>
-
-    <div class="mySlides fade">
-      <img src="4.jpg" alt="Photo 4" style="width:100%">
-      <div class="text">so for now, it's only me</div>
-      <div class="text">and maybe that's all i need</div>
-    </div>
-  </div>
-
-  <!-- Audio Player (Hidden initially) -->
-  <audio id="song" loop>
-    <source src="music.mp3" type="audio/mp3">
-  </audio>
-
-  <!-- Popup HBD Message -->
-  <div id="popup-hbd" class="popup">HBD</div>
-<!-- 
-  <script>
-    let slideIndex = 0;
-    let isSlideshowRunning = true;
-
-    // Function to start music and slideshow
-    function startSlideshow() {
-      // Play the music
-      const audio = document.getElementById('song');
-      audio.play();
-
-      // Hide the play music button
-      document.getElementById('music-section').style.display = 'none';
-
-      // Show the slideshow
-      document.getElementById('slideshow').style.display = 'block';
-
-      // Start slideshow
-      showSlides();
-    }
-
-    // Function to handle slideshow transitions
-    function showSlides() {
-      if (!isSlideshowRunning) return;
-
-      let slides = document.getElementsByClassName("mySlides");
-      for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) {
-        fadeOutSlideshow();
-        return;
-      }
-      slides[slideIndex - 1].style.display = "block";
-
-      // Set time delay for each slide (customize per slide)
-      if (slideIndex === 1) {
-        setTimeout(showSlides, 5008);  // First slide 5.008 seconds
-      } else if (slideIndex === 2 || slideIndex === 3) {
-        setTimeout(showSlides, 4015);  // Second and third slides 4.015 seconds
-      } else {
-        setTimeout(showSlides, 7000);  // Fourth slide 5 seconds
-      }
-    }
-
-    // Function to fade out the slideshow
-    function fadeOutSlideshow() {
-      // Stop the music
-      const audio = document.getElementById('song');
-      audio.pause();
-      audio.currentTime = 0; // Reset the audio to the beginning
-
-      // Fade out slideshow
-      const slideshow = document.getElementById('slideshow');
-      slideshow.classList.add('hidden');
-
-      // Wait for fade out to finish before showing the HBD message
-      setTimeout(() => {
-        document.getElementById('slideshow').style.display = 'none';
-        showPopup();
-      }, 2000); // Match the transition time for the fade-out (2 seconds)
-    }
-
-    // Function to show HBD popup
-    function showPopup() {
-      const popup = document.getElementById('popup-hbd');
-      popup.classList.add('show');
-    }
-  </script> -->
-
+    <audio id="audio" src="music.mp3"></audio>
+    
+    <script src="script.js"></script>
 </body>
 </html>
